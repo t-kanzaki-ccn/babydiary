@@ -63,8 +63,73 @@ const setupServer = (knex) => {
             console.log(err);
             res.status(400).end();
         }
+    });
 
+    app.patch("/api/v1/:id/diary/:date", async (req, res) => {
+        const { id, date } = req.params;
+        const { branch } = req.query;
+        const { title, comment, author } = req.body;
 
+        try {
+            if(branch != undefined) {
+                const result = await knex("diary")
+                    .where({
+                        baby_id: Number(id),
+                        date: date,
+                        branch: Number(branch)
+                    })
+                    .update({
+                        title: title,
+                        comment: comment,
+                        author: author
+                    });
+                res.status(201).end();
+            } else {
+                const result = await knex("diary")
+                    .where({
+                        baby_id: Number(id),
+                        date: date,
+                    })
+                    .update({
+                        title: title,
+                        comment: comment,
+                        author: author
+                    });
+                res.status(201).end();
+            }
+        } catch(err) {
+            console.log(err);
+            res.status(500).end();
+        }
+    });
+
+    app.delete("/api/v1/:id/diary/:date", async (req, res) => {
+        const { id, date } = req.params;
+        const { branch } = req.query;
+
+        try {
+            if(branch != undefined) {
+                const result = await knex("diary")
+                    .where({
+                        baby_id: Number(id),
+                        date: date,
+                        branch: Number(branch)
+                    })
+                    .del();
+                res.status(201).end();
+            } else {
+                const result = await knex("diary")
+                    .where({
+                        baby_id: Number(id),
+                        date: date,
+                    })
+                    .del();
+                res.status(201).end();
+            }
+        } catch(err) {
+            console.log(err);
+            res.status(500).end();
+        }
     });
 
     return app;
