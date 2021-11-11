@@ -1,0 +1,35 @@
+{
+  "name": "babydiary",
+  "version": "1.0.0",
+  "description": "子供の成長を残していけるそんなAPI",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "dev": "nodemon ./src/index.js",
+    "test": "mocha test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/t-kanzaki-ccn/babydiary.git"
+  },
+  "keywords": [
+    "baby"
+  ],
+  "author": "t-kanzaki-ccn",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/t-kanzaki-ccn/babydiary/issues"
+  },
+  "homepage": "https://github.com/t-kanzaki-ccn/babydiary#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.95.14",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "chai": "^4.3.4",
+    "chai-http": "^4.3.0",
+    "mocha": "^9.1.3",
+    "nodemon": "^2.0.15"
+  }
+}
