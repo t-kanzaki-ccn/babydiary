@@ -21,6 +21,47 @@ describe("BabyDiary API Server", () => {
         const res = await request.get("/api/v1/01/diary/20211111");
         res.should.have.status(200);
       });
+
+
+      const testdata = [{
+        id: 1,
+        baby_id: 1,
+        date: '2021-11-10T15:00:00.000Z',
+        branch: '01',
+        title: 'test',
+        comment: 'hahah',
+        author: 'papa'
+      },
+      {
+        id: 2,
+        baby_id: 1,
+        date: '2021-11-10T15:00:00.000Z',
+        branch: '02',
+        title: 'test2',
+        comment: 'gagagaga',
+        author: 'mama'
+      }]
+
+      const testdata2 = [{
+        id: 2,
+        baby_id: 1,
+        date: '2021-11-10T15:00:00.000Z',
+        branch: '02',
+        title: 'test2',
+        comment: 'gagagaga',
+        author: 'mama'
+      }]
+
+      it("should return test data", async () => {
+        const res = await request.get("/api/v1/01/diary/20211111");
+        JSON.parse(res.text).should.eql(testdata);
+      });
+
+      it("should return branch 02 datta", async () => {
+        const res = await request.get("/api/v1/01/diary/20211111?branvh=2");
+        JSON.parse(res.text).should.eql(testdata2);
+      });
+
     });
   });
 });
