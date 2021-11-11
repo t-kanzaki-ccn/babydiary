@@ -4,7 +4,10 @@ chai.use(chaiHttp);
 const { setupServer } = require("../src/server");
 chai.should();
 
-const server = setupServer();
+const config = require("../src/config");
+const knex = require("knex")(config.db);
+
+const server = setupServer(knex);
 
 describe("BabyDiary API Server", () => {
   let request;
