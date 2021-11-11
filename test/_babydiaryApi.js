@@ -63,5 +63,14 @@ describe("BabyDiary API Server", () => {
       });
 
     });
+
+    describe("POST /api/v1/:id/diary/:date - happycase", () => {
+      it("should return status 201", async () => {
+        const res = await request.post("/api/v1/01/diary/20211112");
+        res.should.have.status(201);
+      });
+
+
+    });
   });
 });
