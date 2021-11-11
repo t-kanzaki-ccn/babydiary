@@ -31,6 +31,33 @@ const setupServer = (knex) => {
         }
     });
 
+    app.post("/api/v1/:id/diary/:date", async (req, res) => {
+        const { id, date } = req.params;
+        const { title, comment, author } = req.body;
+
+        try {
+
+            const result = await knex("diary")
+                .insert({
+                    baby_id: Number(id),
+                    date: date,
+                    branch: '01',
+                    title: title,
+                    comment: comment,
+                    author: author
+                })
+                .returning("id","date", "branch");
+
+            res.status(201);
+            res.send(result);
+        } catch(err) {
+            console.log(err);
+            res.status(400).end();
+        }
+
+
+    });
+
     return app;
 };
 
