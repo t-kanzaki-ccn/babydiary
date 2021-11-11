@@ -28,7 +28,7 @@ exports.up = async function(knex, Promise) {
         t.date("date")
             .notNullable();
 
-        t.string("branch", 2)
+        t.integer("branch", 2)
             .notNullable();
 
         t.string("title", 50)
@@ -43,7 +43,7 @@ exports.up = async function(knex, Promise) {
 };
 
 exports.down = async function(knex) {
-    await knex.schema.dropTable("baby");
     await knex.schema.dropTable("diary");
+    await knex.schema.dropTable("baby");
 
 };
