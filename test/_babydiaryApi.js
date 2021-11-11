@@ -58,7 +58,7 @@ describe("BabyDiary API Server", () => {
       });
 
       it("should return branch 02 datta", async () => {
-        const res = await request.get("/api/v1/01/diary/20211111?branvh=2");
+        const res = await request.get("/api/v1/01/diary/20211111?branch=02");
         JSON.parse(res.text).should.eql(testdata2);
       });
 
