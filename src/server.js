@@ -13,7 +13,7 @@ const setupServer = (knex) => {
                     .where({
                         baby_id: Number(id),
                         date: date,
-                        branch: branch
+                        branch: Number(branch)
                     })
                     .select();
                 res.send(result);
@@ -37,16 +37,25 @@ const setupServer = (knex) => {
 
         try {
 
+            const branchCount = await knex("diary")
+                .where({
+                    baby_id: Number(id),
+                    date: date
+                })
+                .count('id');
+
+            const branchNum = Number(branchCount[0].count) + 1;
+
             const result = await knex("diary")
                 .insert({
                     baby_id: Number(id),
                     date: date,
-                    branch: '01',
+                    branch: branchNum,
                     title: title,
                     comment: comment,
                     author: author
                 })
-                .returning("id","date", "branch");
+                .returning(["id", "date", "branch"]);
 
             res.status(201);
             res.send(result);

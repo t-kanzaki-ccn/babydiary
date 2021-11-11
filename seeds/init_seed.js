@@ -12,7 +12,7 @@ exports.seed = async function(knex) {
 
   await knex('diary').insert([
     {baby_id: 1, date: '20211110', branch: 1, title: 'test', comment: 'hahah', author: 'papa'},
-    {baby_id: 1, date: '20211110', branch: 1, title: 'test2', comment: 'gagagaga', author: 'mama'}
+    {baby_id: 1, date: '20211110', branch: 2, title: 'test2', comment: 'gagagaga', author: 'mama'}
   ]);
 
 };
